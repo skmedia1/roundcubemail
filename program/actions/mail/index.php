@@ -1181,12 +1181,12 @@ class rcmail_action_mail_index extends rcmail_action
                     }
                 }
 
-                if (!empty($style)) {
-                    foreach ($style as $idx => $val) {
-                        $style[$idx] = $idx . ': ' . $val;
-                    }
+                if (!empty($style) && is_array($style)) {
+                foreach ($style as $idx => $val) {
+                    $style[$idx] = $idx . ': ' . $val;
+                }
 
-                    $attrs['style'] = ($attrs['style'] ? trim($attrs['style'], ';') . '; ' : '') . implode('; ', $style);
+                $attrs['style'] = (!empty($attrs['style']) ? trim($attrs['style'], ';') . '; ' : '') . implode('; ', $style);
                 }
 
                 $out = html::tag('div', $attrs, $content);
